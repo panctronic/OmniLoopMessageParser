@@ -91,20 +91,7 @@ def parse_info_from_filename(filename):
     finishValues = {'0x12', '0x14', '0x31', '0x34', '0x3d', '0x40', '0x42', '0x80', 'Nominal', '0x18', '0x1c', 'Unknown','WIP'}
     antennaValues = {'origAnt', 'adHocAnt'}
 
-    for val in finishValues:
-        thisFinish = re.findall(val,filename)
-        if thisFinish:
-            break
-
-    for val in antennaValues:
-        thisAntenna = re.findall(val,filename)
-        if thisAntenna:
-            break
-
-    if not thisFinish:
-        thisFinish = ['Nominal']
-
-    if not thisAntenna:
-        thisAntenna = ['433MHz']
+    thisFinish = [x for x in finishValues if x in filename] or ['Nominal']
+    thisAntenna = [x for x in antennaValues if x in filename] or ['433Mhz']
 
     return (thisPerson, thisFinish[0], thisAntenna[0])

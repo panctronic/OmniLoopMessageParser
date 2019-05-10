@@ -3,14 +3,14 @@ import numpy as np
 from byteUtils import *
 from utils import *
 
-from parse_02 import *
-from parse_06 import *
-from parse_0e import *
-from parse_1a13 import *
-from parse_1a16 import *
-from parse_1a17 import *
-from parse_1d import *
-from parse_1f import *
+import parse_02
+import parse_06
+import parse_0e
+import parse_1a13
+import parse_1a16
+import parse_1a17
+import parse_1d
+import parse_1f
 
 # note - parsers not finished return a hex string for 'message_type', e.g., '0x01'
 #        whereas parsers that have been finished use '1a16' or '1d'
@@ -28,21 +28,21 @@ def parse_1a(msg):
     byteList = list(byteMsg)
     xtype = byteList[16]
     if xtype == 0x16:
-        msgDict = parse_1a16(msg)
+        msgDict = parse_1a16.parse_1a16(msg)
     elif xtype == 0x17:
-        msgDict = parse_1a17(msg)
+        msgDict = parse_1a17.parse_1a17(msg)
     else:
-        msgDict = parse_1a13(msg)
+        msgDict = parse_1a13.parse_1a13(msg)
 
     return msgDict
 
 chooseMsgType = {
-    0x02: parse_02,
-    0x06: parse_06,
-    0x0e: parse_0e,
-    0x1a: parse_1a,
-    0x1d: parse_1d,
-    0x1f: parse_1f
+    0x02: parse_02.parse_02,
+    0x06: parse_06.parse_06,
+    0x0e: parse_0e.parse_0e,
+    0x1a: parse_1a.parse_1a,
+    0x1d: parse_1d.parse_1d,
+    0x1f: parse_1f.parse_1f,
 }
 
 def processMsg(msg):
