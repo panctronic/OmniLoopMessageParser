@@ -40,7 +40,7 @@ chooseMsgType = {
     0x02: parse_02.parse_02,
     0x06: parse_06.parse_06,
     0x0e: parse_0e.parse_0e,
-    0x1a: parse_1a.parse_1a,
+    0x1a: parse_1a,
     0x1d: parse_1d.parse_1d,
     0x1f: parse_1f.parse_1f,
 }
