@@ -2,7 +2,7 @@
 #      NOTE - only parsing the Fault returned version Type 2
 
 from byteUtils import *
-from utils import *
+import utils
 import numpy as np
 
 def parse_02(msg):
@@ -85,12 +85,12 @@ def parse_02(msg):
     msgDict['basal_active']            = (byte_4 & 0x1) != 0
 
     msgDict['pulses_not_delivered'] = word_L
-    msgDict['insulin_not_delivered'] = getUnitsFromPulses(word_L)
+    msgDict['insulin_not_delivered'] = utils.getUnitsFromPulses(word_L)
 
     msgDict['seq_byte_M']  = byte_M
 
     msgDict['total_pulses_delivered'] = word_N
-    msgDict['insulinDelivered'] = getUnitsFromPulses(word_N)
+    msgDict['insulinDelivered'] = utils.getUnitsFromPulses(word_N)
 
     msgDict['logged_fault'] = f'0x%X'%(byte_P)
 
@@ -99,7 +99,7 @@ def parse_02(msg):
     if pulses == 0x3FF:
         msgDict['reservoir_remaining'] = '>50 u'
     else:
-        msgDict['reservoir_remaining'] = getUnitsFromPulses(pulses)
+        msgDict['reservoir_remaining'] = utils.getUnitsFromPulses(pulses)
 
     msgDict['pod_active_minutes'] = word_S
     msgDict['alerts_bit_mask'] = byte_T

@@ -1,7 +1,5 @@
 # file: parse_0e - is a request of a nonce resync returned from the pod
 
-from byteUtils import *
-
 def parse_0e(msg):
     # request status from the pod
     """
@@ -25,7 +23,7 @@ def parse_0e(msg):
     byteMsg = bytearray.fromhex(msg)
     byteList = list(byteMsg)
     mtype = byteList[0]
-    alwaysOne = byteList[1]
+    _ = byteList[1]  # always one
     requestCode = byteList[2]
 
     msgDict = { }

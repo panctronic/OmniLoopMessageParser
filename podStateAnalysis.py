@@ -1,4 +1,4 @@
-from utils import *
+import utils
 from podUtils import *
 from messagePatternParsing import *
 
@@ -23,9 +23,9 @@ def getPodState(frame):
     timeCumSec = 0
     pod_progress = 0
     faultProcessedMsg = {}
-    insulinDelivered = getUnitsFromPulses(0)
-    reqTB = getUnitsFromPulses(0)
-    reqBolus = getUnitsFromPulses(0)
+    insulinDelivered = utils.getUnitsFromPulses(0)
+    reqTB = utils.getUnitsFromPulses(0)
+    reqBolus = utils.getUnitsFromPulses(0)
     #extBo = False # since extended bolus is always false, don't put into dataframe
     Bolus = False
     TB    = False

@@ -1,6 +1,5 @@
 # file: parse_1a16 - does the parsing a temporary basal commond
 from byteUtils import *
-from utils import *
 from decimal import Decimal
 
 def parse_1a16(msg):

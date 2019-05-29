@@ -1,6 +1,6 @@
 # file: parse_1d - does the parsing for the 1d message returned from the pod
 from byteUtils import *
-from utils import *
+import utils
 
 def parse_1d(msg):
     # extract information from the 1d response and return as a dictionary
@@ -63,11 +63,11 @@ def parse_1d(msg):
     msgDict['basal_active']            = (byte_1 >> 4 & 0x1) != 0
 
     msgDict['pod_progress']  = byte_1 & 0xF
-    msgDict['pod_progress_meaning']  = getPodProgessMeaning(byte_1 & 0xF)
+    msgDict['pod_progress_meaning']  = utils.getPodProgessMeaning(byte_1 & 0xF)
 
     # get pulses and units of insulin delivered
     pulses = (dword_3 >> 15) & 0x1FFF
-    insulin = getUnitsFromPulses(pulses)
+    insulin = utils.getUnitsFromPulses(pulses)
     msgDict['total_pulses_delivered'] = pulses
     msgDict['insulinDelivered_delivered']  = insulin
 
@@ -75,7 +75,7 @@ def parse_1d(msg):
 
     # get pulses and units of insulin NOT delivered
     pulses = dword_3 & 0x007F
-    insulin = getUnitsFromPulses(pulses)
+    insulin = utils.getUnitsFromPulses(pulses)
     msgDict['pulses_not_delivered'] = pulses
     msgDict['insulin_not_delivered'] = insulin
 
@@ -87,7 +87,7 @@ def parse_1d(msg):
         msgDict['reservoir_remaining'] = '>50 u'
     else:
         pulses = dword_4 & 0x3FF
-        insulin = getUnitsFromPulses(pulses)
+        insulin = utils.getUnitsFromPulses(pulses)
         msgDict['reservoir_remaining'] = insulin
 
     return msgDict

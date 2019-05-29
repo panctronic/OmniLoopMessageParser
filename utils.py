@@ -41,12 +41,6 @@ def printList(thisList):
     for item in thisList:
         print(item)
 
-def listFromDict(thisDict):
-    list_of_keys = []
-    for keys, values in thisDict.items():
-        list_of_keys.append(keys)
-    return list_of_keys
-
 def getPodProgessMeaning(thisInt):
     """ convert the value for pod progess into it's meaning """
     podProgress = { \
@@ -72,5 +66,5 @@ def getPodProgessMeaning(thisInt):
 def getUnitsFromPulses(pulses):
     # given number of pulses convert to units of insulin
     #i = Decimal(0.05 * pulses)
-    insulin = round(0.05 * pulses,2)
+    insulin = round(0.05 * pulses, 2)
     return insulin

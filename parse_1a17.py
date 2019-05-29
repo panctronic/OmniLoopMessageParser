@@ -1,6 +1,6 @@
 # file: parse_1a17 - does the parsing for bolus commond
 from byteUtils import *
-from utils import *
+import utils
 from decimal import Decimal
 
 def parse_1a17(msg):
@@ -108,6 +108,6 @@ def parse_1a17(msg):
     msgDict['extendedTenthPulses'] = extendedTenthPulses
     msgDict['extendedDelay'] = extendedDelay
 
-    msgDict['prompt_bolus_u']  =  getUnitsFromPulses(hhpulses)
+    msgDict['prompt_bolus_u']  =  utils.getUnitsFromPulses(hhpulses)
 
     return msgDict

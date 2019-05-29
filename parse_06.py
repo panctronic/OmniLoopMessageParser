@@ -1,6 +1,6 @@
 # file: parse_06 - is a request of a nonce resync returned from the pod
 
-from byteUtils import *
+import byteUtils
 
 def parse_06(msg):
     # pod response - indicates a nonce resync is required
@@ -35,7 +35,7 @@ def parse_06(msg):
     mtype = byteList[0]
     mlen = byteList[1]
     errorCode = byteList[2]
-    wordCode = combineByte(byteList[3:5])
+    wordCode = byteUtils.combineByte(byteList[3:5])
 
     msgDict = { }
     msgDict['message_type'] = '06'
